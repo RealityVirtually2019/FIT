@@ -7,8 +7,9 @@ public class SwapScript : MonoBehaviour {
 	public bool left = false;
 	public bool right = false;
 
-	float brandPos;
-	public int itemCount = 4;
+	float brandPos; // current position in the shirt lineup
+	public int itemCount = 4; //how many shirts there are
+	public float increments = 1; //how much to move in order to line up shirt
 	// Use this for initialization
 	void Start () {
 		brandPos = brand.transform.position.x;
@@ -18,11 +19,11 @@ public class SwapScript : MonoBehaviour {
 	void Update () {
 		brandPos = brand.transform.position.x;
 		if (left == true && brandPos != Mathf.Abs(0)) {
-			brandPos += 1;
+			brandPos += Mathf.Abs(increments);
 			left = false;
 		}
 		if (right == true && Mathf.Abs(brandPos) != Mathf.Abs(itemCount) - 1) {
-			brandPos -= 1;
+			brandPos -= Mathf.Abs(increments);
 			right = false;
 		}
 		brand.transform.position = new Vector3(brandPos,brand.transform.position.y,brand.transform.position.z);
